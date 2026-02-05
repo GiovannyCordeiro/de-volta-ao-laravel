@@ -12,6 +12,14 @@ class Post extends Model
         'description',
     ];
 
+    public function rules()
+    {
+        return [
+            'title' => ['required', 'string', 'max:100', 'regex:/^[a-zA-Z0-9\s]+$/'],
+            'description' => ['nullable', 'string'],
+        ];
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
