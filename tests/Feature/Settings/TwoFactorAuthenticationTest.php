@@ -1,4 +1,4 @@
-<?php
+<#php
 
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
