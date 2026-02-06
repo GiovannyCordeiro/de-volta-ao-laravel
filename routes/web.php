@@ -15,6 +15,7 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('posts', [PostController::class, 'index'])->name('posts');
+Route::get('posts', [PostController::class, 'index'])->name('rootPost');
+Route::get('posts/create', [PostController::class, 'create'])->name('createPost');
 
 require __DIR__.'/settings.php';
