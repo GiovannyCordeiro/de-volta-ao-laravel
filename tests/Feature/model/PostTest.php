@@ -6,7 +6,7 @@ use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-test('pode criar um post', function () {
+test('Can be abble create post', function () {
     $user = User::factory()->create([
         'name' => 'Giovanny',
     ]);
