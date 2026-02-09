@@ -1,15 +1,23 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import Header from '@/components/Header.vue';
 
-withDefaults(
-    defineProps<{
-        canRegister: boolean;
-    }>(),
-    {
-        canRegister: true,
-    },
-);
+const page = usePage();
+const user = computed(() => page.props.auth.user);
+
+const form = useForm({
+    user_id: user.value.id,
+    title: null,
+    description: null
+});
+
+const submit = () => {
+    console.log("Formulario:", form);
+    // form.post('/store')
+}
+
 </script>
 
 <template>
@@ -19,6 +27,15 @@ withDefaults(
     </Head>
 
     <Header />
-
     <h2>CREATE muito louco mesmo</h2>
+    <h2>dsjlkdjslkds</h2>
+
+    <form @submit.prevent="submit">
+        <input type="text" v-model="form.title" placeholder="Best title is here...">
+
+        <input type="text" v-model="form.description" placeholder="Description for all the time...">
+        <button>Salvar no banco</button>
+    </form>
+
+
 </template>
