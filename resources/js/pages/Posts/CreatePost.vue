@@ -15,8 +15,9 @@ const form = useForm<PostForm>({
 });
 
 const submit = () => {
-    console.log("Formulario:", form);
-    // form.post('/store')
+    form.post('/posts', {
+        onError: () => form.reset()
+    })
 }
 
 </script>
@@ -31,9 +32,15 @@ const submit = () => {
     <h2>CREATE muito louco mesmo</h2>
 
     <form @submit.prevent="submit">
-        <input type="text" v-model="form.title" placeholder="Best title is here...">
+        <div>
+            <input type="text" v-model="form.title" placeholder="Best title is here...">
+            <small>{{ form.errors.title }}</small>
+        </div>
 
-        <input type="text" v-model="form.description" placeholder="Description for all the time...">
+        <div>
+            <input type="text" v-model="form.description" placeholder="Description for all the time...">
+            <small>{{ form.errors.description }}</small>
+        </div>
         <button>Salvar no banco</button>
     </form>
 
