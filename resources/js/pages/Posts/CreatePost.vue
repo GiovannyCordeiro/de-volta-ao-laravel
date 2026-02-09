@@ -3,14 +3,15 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import Header from '@/components/Header.vue';
+import type PostForm from '@/interfaces/PostForm';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 
-const form = useForm({
+const form = useForm<PostForm>({
     user_id: user.value.id,
-    title: null,
-    description: null
+    title: '',
+    description: ''
 });
 
 const submit = () => {
@@ -28,7 +29,6 @@ const submit = () => {
 
     <Header />
     <h2>CREATE muito louco mesmo</h2>
-    <h2>dsjlkdjslkds</h2>
 
     <form @submit.prevent="submit">
         <input type="text" v-model="form.title" placeholder="Best title is here...">
