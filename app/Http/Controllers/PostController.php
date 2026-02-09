@@ -30,20 +30,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $fiels = $request->validate([
-            'user_id' => ['required', 'exists:users'],
+        $fields = $request->validate([
             'title' => ['required'],
             'description' => ['required'],
         ]);
 
-        // dd($fiels['user_id']);
+        $user = User::find($request->user()->id);
 
-        $user = User::find($fiels['user_id']);
-
-        $user->posts()->create([
-            'title' => $fiels['title'],  // ✅ Correto - chave => valor
-            'description' => $fiels['description'],  // ✅ Correto - chave => valor
-        ]);
+        $user->posts()->create($fields);
 
         return redirect()->route('posts.index');
     }

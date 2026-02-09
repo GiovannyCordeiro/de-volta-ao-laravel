@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import { Head, useForm } from '@inertiajs/vue3';
-import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import Header from '@/components/Header.vue';
 import type PostForm from '@/interfaces/PostForm';
 
-const page = usePage();
-const user = computed(() => page.props.auth.user);
 
 const form = useForm<PostForm>({
-    user_id: user.value.id,
     title: '',
     description: ''
 });
