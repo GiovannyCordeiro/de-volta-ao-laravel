@@ -2,14 +2,16 @@
 import { Head } from '@inertiajs/vue3';
 import Header from '@/components/Header.vue';
 
-withDefaults(
-    defineProps<{
-        canRegister: boolean;
-    }>(),
-    {
-        canRegister: true,
-    },
-);
+interface Post {
+    id: number
+    title: string,
+    description: string
+}
+
+defineProps({
+    posts: Array<Post>
+});
+
 </script>
 
 <template>

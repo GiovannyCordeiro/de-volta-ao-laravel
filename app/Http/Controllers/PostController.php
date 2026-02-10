@@ -12,9 +12,14 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Posts/RootPost');
+        // dd($request->user()->id);
+        $posts = $request->user()->posts;
+
+        return Inertia::render('Posts/RootPost', [
+            'posts' => $posts,
+        ]);
     }
 
     /**

@@ -3,7 +3,6 @@ import { Head, useForm } from '@inertiajs/vue3';
 import Header from '@/components/Header.vue';
 import type PostForm from '@/interfaces/PostForm';
 
-
 const form = useForm<PostForm>({
     title: '',
     description: ''
