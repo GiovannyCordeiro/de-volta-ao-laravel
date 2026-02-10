@@ -40,9 +40,7 @@ class PostController extends Controller
             'description' => ['required'],
         ]);
 
-        $user = User::find($request->user()->id);
-
-        $user->posts()->create($fields);
+        $request->user()->posts()->create($fields);
 
         return redirect()->route('posts.index');
     }
