@@ -50,7 +50,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $this->authorize('view', $post);
+
+        return Inertia::render('Posts/ShowPost', [
+            'post' => $post,
+        ]);
     }
 
     /**

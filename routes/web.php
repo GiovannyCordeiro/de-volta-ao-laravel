@@ -16,7 +16,7 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('posts', PostController::class)->only([
-    'index', 'create', 'store',
+    'index', 'create', 'store', 'show',
 ])->middleware(['auth', 'verified']);
 
 require __DIR__.'/settings.php';
