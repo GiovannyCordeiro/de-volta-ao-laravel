@@ -16,19 +16,15 @@ const form = useForm<PostForm>({
 </script>
 
 <template>
-
     <form @submit.prevent="props.submit(form)">
         <div>
             <input type="text" v-model="form.title" placeholder="Best title is here...">
             <small>{{ form.errors.title }}</small>
         </div>
-
         <div>
             <input type="text" v-model="form.description" placeholder="Description for all the time...">
             <small>{{ form.errors.description }}</small>
         </div>
         <button>Salvar no banco</button>
     </form>
-
-
 </template>

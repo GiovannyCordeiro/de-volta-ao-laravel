@@ -19,9 +19,7 @@ const createPost = (form: InertiaForm<PostForm>) => {
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
-
     <Header />
     <h2>CREATE muito louco mesmo</h2>
-
     <Form :submit="createPost" />
 </template>
