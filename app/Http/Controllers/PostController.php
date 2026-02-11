@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +13,6 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->user()->id);
         $posts = $request->user()->posts;
 
         return Inertia::render('Posts/RootPost', [
@@ -62,7 +60,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Posts/EditPost', [
+            'post' => $post,
+        ]);
     }
 
     /**
