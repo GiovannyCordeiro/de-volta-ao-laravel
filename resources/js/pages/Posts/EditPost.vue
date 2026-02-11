@@ -3,12 +3,7 @@
 import { Head } from '@inertiajs/vue3';
 import Form from '@/components/Form.vue';
 import Header from '@/components/Header.vue';
-
-interface Post {
-    id: number
-    title: string,
-    description: string
-}
+import type Post from '@/interfaces/PostInterface';
 
 defineProps<{
     post: Post

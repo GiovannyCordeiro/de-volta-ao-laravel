@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import Header from '@/components/Header.vue';
-
-interface Post {
-    id: number
-    title: string,
-    description: string
-}
+import type Post from '@/interfaces/PostInterface';
 
 defineProps({
     posts: Array<Post>
