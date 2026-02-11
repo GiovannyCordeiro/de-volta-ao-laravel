@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { Head, useForm } from '@inertiajs/vue3';
+
+import { Head } from '@inertiajs/vue3';
+import type { InertiaForm } from '@inertiajs/vue3';
+import Form from '@/components/Form.vue';
 import Header from '@/components/Header.vue';
 import type PostForm from '@/interfaces/PostForm';
 
-const form = useForm<PostForm>({
-    title: '',
-    description: ''
-});
-
-const submit = () => {
+const createPost = (form: InertiaForm<PostForm>) => {
     form.post('/posts', {
         onError: () => form.reset()
     })
@@ -25,18 +23,5 @@ const submit = () => {
     <Header />
     <h2>CREATE muito louco mesmo</h2>
 
-    <form @submit.prevent="submit">
-        <div>
-            <input type="text" v-model="form.title" placeholder="Best title is here...">
-            <small>{{ form.errors.title }}</small>
-        </div>
-
-        <div>
-            <input type="text" v-model="form.description" placeholder="Description for all the time...">
-            <small>{{ form.errors.description }}</small>
-        </div>
-        <button>Salvar no banco</button>
-    </form>
-
-
+    <Form :submit="createPost" />
 </template>
