@@ -2,13 +2,15 @@
 import type { InertiaForm} from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3';
 import type PostForm from '@/interfaces/PostForm';
+import type Post from '@/interfaces/PostInterface';
 
 const props = defineProps<{
     submit: (form: InertiaForm<PostForm>) => void
-    post?: PostForm
+    post?: Post
 }>();
 
 const form = useForm<PostForm>({
+    id: props.post?.id || null,
     title: props.post?.title || '',
     description: props.post?.description || ''
 });
