@@ -70,7 +70,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        dd($request, $post);
+        $fields = $request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        $post->update($fields);
+
+        return redirect()->route('posts.index');
     }
 
     /**

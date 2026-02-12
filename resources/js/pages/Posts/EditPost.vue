@@ -12,7 +12,9 @@ defineProps<{
 }>();
 
 const editPost = (form: InertiaForm<PostForm>) => {
-    form.put(`/posts/${form.id}`)
+    form.put(`/posts/${form.id}`, {
+        onError: () => form.reset()
+    })
 }
 
 </script>
