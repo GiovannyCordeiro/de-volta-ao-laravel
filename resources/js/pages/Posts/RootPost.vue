@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import FlashMessage from '@/components/FlashMessage.vue';
 import Header from '@/components/Header.vue';
 import type Post from '@/interfaces/PostInterface';
 
@@ -10,6 +11,8 @@ defineProps({
 </script>
 
 <template>
+    <FlashMessage />
+
     <Head title="Post">
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />

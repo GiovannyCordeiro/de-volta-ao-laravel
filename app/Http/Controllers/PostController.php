@@ -40,7 +40,9 @@ class PostController extends Controller
 
         $request->user()->posts()->create($fields);
 
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post Criado com sucesso');
     }
 
     /**
@@ -77,7 +79,9 @@ class PostController extends Controller
 
         $post->update($fields);
 
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post Atualizado com sucesso');
     }
 
     /**
