@@ -3,13 +3,13 @@
 import { usePage } from '@inertiajs/vue3'
 import { ref, watch } from 'vue'
 
-const page = usePage()
+const { flash } = usePage().props
 
 const success = ref<string | null>(null)
 const error   = ref<string | null>(null)
 
 watch(
-    () => page.props.flash as { success?: string; error?: string },
+    () => flash as { success?: string; error?: string },
     (flash) => {
         if (flash?.success) {
             success.value = flash.success
@@ -21,7 +21,7 @@ watch(
             setTimeout(() => error.value = null, 3000)
         }
     },
-    { immediate: true, deep: true } // 👈 deep: true é importante aqui
+    { immediate: true, deep: true }
 )
 </script>
 

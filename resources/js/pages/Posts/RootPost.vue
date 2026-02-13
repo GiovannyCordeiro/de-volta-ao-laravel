@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import FlashMessage from '@/components/FlashMessage.vue';
-import Header from '@/components/Header.vue';
 import type Post from '@/interfaces/PostInterface';
+import PostLayout from '@/layouts/PostLayout.vue';
 
 defineProps({
     posts: Array<Post>
 });
 
+defineOptions({
+    layout: PostLayout
+})
+
 </script>
 
 <template>
-    <FlashMessage />
-
-    <Head title="Post">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    </Head>
-
-    <Header />
-
+    <Head title="root" />
     <section class="w-full h-[90vh] flex flex-col items-center gap-10">
         <h2>Pagina principal dos posts depois de logado no carai a 4</h2>
 
@@ -28,6 +23,5 @@ defineProps({
             <p>Title: {{ post.title }}</p>
             <p>Description: {{ post.description }}</p>
         </Link>
-
     </section>
 </template>

@@ -3,7 +3,6 @@
 import { Head } from '@inertiajs/vue3';
 import type { InertiaForm } from '@inertiajs/vue3';
 import Form from '@/components/Form.vue';
-import Header from '@/components/Header.vue';
 import type PostForm from '@/interfaces/PostForm';
 
 const createPost = (form: InertiaForm<PostForm>) => {
@@ -15,11 +14,6 @@ const createPost = (form: InertiaForm<PostForm>) => {
 </script>
 
 <template>
-    <Head title="Post">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    </Head>
-    <Header />
-    <h2>CREATE muito louco mesmo</h2>
+    <Head title="Create Post" />
     <Form :submit="createPost" />
 </template>
