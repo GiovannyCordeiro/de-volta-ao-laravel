@@ -15,8 +15,6 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('posts', PostController::class)->only([
-    'index', 'create', 'store', 'show', 'edit', 'update',
-])->middleware(['auth', 'verified']);
+Route::resource('posts', PostController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/settings.php';
