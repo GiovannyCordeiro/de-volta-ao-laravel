@@ -5,8 +5,11 @@ use App\Models\User;
 use Inertia\Testing\AssertableInertia;
 
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use function Pest\Laravel\put;
 
 test('returns posts index', function () {
 
@@ -71,4 +74,60 @@ test('cannot view post another user', function () {
 
     get(route('posts.show', $post))
         ->assertForbidden();
+});
+
+test('can update your own post', function () {
+    $user = User::factory()->create();
+    $post = Post::factory()->for($user)->create();
+
+    /** @var User $user */
+    actingAs($user);
+
+    put(route('posts.update', $post), [
+        'title' => 'New Title',
+        'description' => 'New description', ])
+        ->assertRedirect(route('posts.index'))
+        ->assertSessionHas('success', 'Post Atualizado com sucesso');
+
+    assertDatabaseHas('posts', ['title' => 'New Title']);
+});
+
+test('cannot update your own post', function () {
+    $user = User::factory()->create();
+    $anotherUser = User::factory()->create();
+
+    $post = Post::factory()->for($anotherUser)->createOne();
+
+    /** @var User $user */
+    actingAs($user);
+
+    put(route('posts.update', $post), [
+        'title' => 'Other title',
+        'description' => 'Other description'])
+        ->assertForbidden();
+});
+
+test('can you delete your own post', function () {
+    $user = User::factory()->create();
+    $post = Post::factory()->for($user)->create();
+
+    /** @var User $user */
+    actingAs($user);
+
+    delete(route('posts.destroy', $post))
+        ->assertRedirect(route('posts.index'))
+        ->assertSessionHas('success', 'Post Deletado com sucesso');
+});
+
+test('cannot delete other post', function () {
+    $user = User::factory()->create();
+    $anotherUser = User::factory()->create();
+    $post = Post::factory()->for($anotherUser)->createOne();
+
+    /** @var User $user */
+    actingAs($user);
+
+    delete(route('posts.update', $post))
+        ->assertRedirect(route('posts.index'))
+        ->assertSessionHas('success', 'Post Deletado com sucesso');
 });
